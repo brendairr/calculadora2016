@@ -1,0 +1,16 @@
+language: python
+python:
+  - "2.7"
+
+install: 
+  "pip install -r requerimientos.txt"
+
+
+#cada que hacemos push TRAVIS levanta una máquina desde cero automáticamente
+before_script: 
+  - autopep8 -ir *  #r representa que es recursivo
+  - flake8 --max-complexity=15 --exclude=* .txt,*.md *
+
+script: 
+   - cd calculadora
+   - lettuce tests
